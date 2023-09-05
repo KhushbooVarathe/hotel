@@ -82,24 +82,25 @@ const getUsers = async (req, res, next) => {
 }
 
 const getoneUser = async (req, res, next) => {
-  try {
-    const singleUser = await UserSchema.findById(req.params.id);
-    if (!singleUser) {
-      return res.status(404).send({ error: 'User not found' });
-    }
+  next()
+  // try {
+  //   const singleUser = await UserSchema.findById(req.params.id);
+  //   if (!singleUser) {
+  //     return res.status(404).send({ error: 'User not found' });
+  //   }
 
-    // Assuming user has a photos array similar to hotels
-    const userPhotoUrl = `${process.env.baseUrl}/${singleUser.photos[0].path}`;
+  //   // Assuming user has a photos array similar to hotels
+  //   const userPhotoUrl = `${process.env.baseUrl}/${singleUser.photos[0].path}`;
 
-    const userWithPhotoUrl = {
-      ...singleUser.toObject(),
-      photoUrl: userPhotoUrl
-    };
+  //   const userWithPhotoUrl = {
+  //     ...singleUser.toObject(),
+  //     photoUrl: userPhotoUrl
+  //   };
 
-    res.status(200).send(userWithPhotoUrl);
-  } catch (err) {
-    next(err);
-  }
+  //   res.status(200).send(userWithPhotoUrl);
+  // } catch (err) {
+  //   next(err);
+  // }
 };
 
 module.exports = { getoneUser,updateUsers, getUsers, createUsers, deleteUsers }
